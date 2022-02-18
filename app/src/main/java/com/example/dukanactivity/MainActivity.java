@@ -9,62 +9,33 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-    private List<ImagesResponse> mList = new ArrayList<>();
+    private List<Rec_ModelClass> mList = new ArrayList<>();
     private ImageView img_backArrow;
-//    Adapter_rec adapter_rec;
+    Adapter_rec adapter_rec;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.rec_view);
-        Call<List<ImagesResponse>> imageResponse = ApiClient.getInterface().getAllImages();
-        imageResponse.enqueue(new Callback<List<ImagesResponse>>() {
-            @Override
-            public void onResponse(Call<List<ImagesResponse>> call, Response<List<ImagesResponse>> response) {
-                if(response.isSuccessful()){
+        addList();
 
-
-
-
-                }
-                mList = response.body();
-                GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this,2);
-                Adapter_rec adp = new Adapter_rec(MainActivity.this,mList);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setAdapter(adp);
-
-            }
-
-            @Override
-            public void onFailure(Call<List<ImagesResponse>> call, Throwable t) {
-
-                String message = t.getLocalizedMessage();
-                Toast.makeText(MainActivity.this,message,Toast.LENGTH_LONG).show();
-            }
-        });
-
-//        getAllImages();
-
-
-
+        GridLayoutManager layoutManager = new GridLayoutManager(this,2);
+        adapter_rec = new Adapter_rec(this,mList);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter_rec);
 
         Fragment fr = HomeFragment.newInstance();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container,fr,"HomeFragment");
+        ft.replace(R.id.fragment_container,fr,"main_frag");
         ft.commit();
 
 
@@ -92,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 2:
-
+                //holder.m1.setBackgroundColor(Color.parseColor("#FF0000"));
                 Fragment fragment_two = AccountFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction().replace(R.id.fragment_container, fragment_two)
@@ -102,46 +73,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//            void addList() {
-//        Rec_ModelClass amc = new Rec_ModelClass("Account Holder", R.drawable.ic_launcher_background);
-//        mList.add(amc);
-//        amc = new Rec_ModelClass("Debit Card", R.drawable.ic_launcher_background);
-//        mList.add(amc);
-//        amc = new Rec_ModelClass("Credit Card", R.drawable.ic_launcher_background);
-//        mList.add(amc);
-//        amc = new Rec_ModelClass("Existing Wallet", R.drawable.ic_launcher_background);
-//        mList.add(amc);
-//
-//
-//    }
+            void addList() {
+        Rec_ModelClass amc = new Rec_ModelClass("Account Holder", R.drawable.ic_launcher_background);
+        mList.add(amc);
+        amc = new Rec_ModelClass("Debit Card", R.drawable.ic_launcher_background);
+        mList.add(amc);
+        amc = new Rec_ModelClass("Credit Card", R.drawable.ic_launcher_background);
+        mList.add(amc);
+        amc = new Rec_ModelClass("Existing Wallet", R.drawable.ic_launcher_background);
+        mList.add(amc);
 
-    public void getAllImages(){
-//        Call<List<ImagesResponse>> imageResponse = ApiClient.getInterface().getAllImages();
-//        imageResponse.enqueue(new Callback<List<ImagesResponse>>() {
-//            @Override
-//            public void onResponse(Call<List<ImagesResponse>> call, Response<List<ImagesResponse>> response) {
-//                if(response.isSuccessful()){
-//
-//
-//
-//
-//                }
-//                mList = response.body();
-//                GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this,2);
-//                Adapter_rec adp = new Adapter_rec(MainActivity.this,mList);
-//                recyclerView.setLayoutManager(layoutManager);
-//                recyclerView.setAdapter(adp);
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<ImagesResponse>> call, Throwable t) {
-//
-//                String message = t.getLocalizedMessage();
-//                Toast.makeText(MainActivity.this,message,Toast.LENGTH_LONG).show();
-//            }
-//        });
-   }
 
+    }
 
 }
