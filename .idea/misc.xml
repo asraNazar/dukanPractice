@@ -9,10 +9,29 @@
         <entry key="..\:/Users/bal-admin/AndroidStudioProjects/DukanActivity/app/src/main/res/layout/fragment_account.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/bal-admin/AndroidStudioProjects/DukanActivity/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/bal-admin/AndroidStudioProjects/DukanActivity/app/src/main/res/menu/menu_resource_file.xml" value="0.264" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/drawable/row_cart_items.xml" value="0.1325" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/layout/activity_item_description.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/layout/card_view.xml" value="0.213768115942029" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/layout/card_view2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/layout/fragment_account.xml" value="0.1" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/layout/fragment_cart.xml" value="0.2" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/layout/fragment_item_description.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/layout/row_cart_items.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/bal-admin/Desktop/dukanPractice-main/app/src/main/res/menu/menu_resource_file.xml" value="0.1" />
+        <entry key="..\:/Users/hp/StudioProjects/dukanPractice/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.197" />
+        <entry key="..\:/Users/hp/StudioProjects/dukanPractice/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.197" />
+        <entry key="..\:/Users/hp/StudioProjects/dukanPractice/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.197" />
+        <entry key="..\:/Users/hp/StudioProjects/dukanPractice/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.197" />
+        <entry key="..\:/Users/hp/StudioProjects/dukanPractice/app/src/main/res/drawable/ic_launcher_background.xml" value="0.197" />
+        <entry key="..\:/Users/hp/StudioProjects/dukanPractice/app/src/main/res/layout/activity_main.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/hp/StudioProjects/dukanPractice/app/src/main/res/layout/card_view.xml" value="0.2" />
+        <entry key="..\:/Users/hp/StudioProjects/dukanPractice/app/src/main/res/menu/menu_resource_file.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
