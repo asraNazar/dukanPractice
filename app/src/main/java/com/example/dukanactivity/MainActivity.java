@@ -41,11 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.cart_icon:
                     replaceFragment(new CartFragment());
-                    CartForRoom cart=new CartForRoom();
-                    cart.setId(item.getItemId());
-//                    if (MainActivity.myDatabase.cartDao().isAddToCart(item.getItemId())!=1){
-
-                    //}
                         break;
 
                 case R.id.account_icon:
@@ -69,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
         //badge for displaying cart item number
             BadgeDrawable badgeDrawable = binding.bottomNavView.getOrCreateBadge(R.id.cart_icon);
             badgeDrawable.setNumber(CartDatabase.getInstance(this).cartDao().countCart());
+
+
+
+
 
         }
 

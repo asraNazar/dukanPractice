@@ -1,10 +1,11 @@
 package com.example.dukanactivity;
 
 
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import java.util.List;
 
 @Entity(tableName = "MyCart")
 public class CartForRoom {
@@ -44,6 +45,11 @@ public class CartForRoom {
             this.price = price;
         }
 
+//        public List<CartForRoom> getCarts (){
+//
+//            List<CartForRoom> cart = getCarts();
+//        return carts();
+//        }
 
     }
 

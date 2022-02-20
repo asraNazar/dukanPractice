@@ -51,9 +51,20 @@ public class DiffUtilsClass extends DiffUtil.Callback {
         CartForRoom crtOld = cartsOld.get(oldItemPosition);
 
         Bundle bundle = new Bundle();
-        if (!(cartsNew.get(newItemPosition) ==cartsOld.get(oldItemPosition))){
+
+        if (!(crtNew ==crtOld)){
+
+            bundle.putInt("id", crtNew.getId());
+            bundle.putString("image", crtNew.getImageid());
+            bundle.putString("price", crtNew.getPrice());
+
+            //bundle.putSerializable("product",crtNew);
+
+
 
         }
-        return super.getChangePayload(oldItemPosition, newItemPosition);
+        else {return  null; }
+
+        return bundle;
     }
 }

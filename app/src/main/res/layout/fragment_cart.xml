@@ -26,7 +26,6 @@
             android:id="@+id/rec_cart2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#65000000"
             android:padding="@dimen/_5sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/row_cart_items"

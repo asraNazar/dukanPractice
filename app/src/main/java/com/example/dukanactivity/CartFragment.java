@@ -7,6 +7,8 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,41 +84,56 @@ public class CartFragment extends Fragment {
 
         return view;
     }
-    BroadcastReceiver mMassage = new BroadcastReceiver() {
+//    BroadcastReceiver mMassage = new BroadcastReceiver() {
+//
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String cartcount = intent.getStringExtra("cartcount");
+//            if (carts.size() == 0) {
+//                txt_quantity.setText("Your Cart is Empty");
+//            } else {
+//                txt_quantity.setText(String.valueOf(carts.size()));
+//            }
+//        }
+//
+//
+//    };
+
+//    private void updatecartcount() {
+//        int count = cartProductAdapter.getItemCount();
+//
+//        if (count == 0) {
+//            txt_quantity.setText("Your Cart is Empty");
+//        } else {
+//            txt_quantity.setText(String.valueOf(count));
+//        }
 
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String cartcount = intent.getStringExtra("cartcount");
-            if (carts.size() == 0) {
-                txt_quantity.setText("Your Cart is Empty");
-            } else {
-                txt_quantity.setText(String.valueOf(carts.size()));
-            }
-        }
-
-
-    };
-
-    private void updatecartcount() {
-        int count = cartProductAdapter.getItemCount();
-
-        if (count == 0) {
-            txt_quantity.setText("Your Cart is Empty");
-        } else {
-            txt_quantity.setText(String.valueOf(count));
-        }
-
-
-    }
+   // }
 
     private void getCartData() {
         carts = CartDatabase.getInstance(getActivity()).cartDao().getCartItems();
         cartProductAdapter = new CartProductAdapter(carts, getActivity());
 
-
+//        cartProductAdapter.updateRec_Cart(carts);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setAdapter(cartProductAdapter);
+
+        if(carts.isEmpty()){
+           BlankFragment fr = new BlankFragment();
+
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container,fr)
+                    .commit();
+
+        }
+
+
+
+
+
+
 
 
     }
