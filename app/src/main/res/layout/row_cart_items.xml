@@ -28,8 +28,8 @@
         android:id="@+id/btn_remove"
         android:layout_width="@dimen/_15sdp"
         android:layout_height="@dimen/_20sdp"
-        android:background="@drawable/ic_baseline_close_24"
         android:layout_alignParentRight="true"
+        android:background="@drawable/ic_baseline_close_24"
 
 
         >

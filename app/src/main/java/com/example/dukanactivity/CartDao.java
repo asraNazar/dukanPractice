@@ -21,17 +21,26 @@ public interface CartDao {
     void deleteCartItems(CartForRoom cart);
 
 
+    @Insert
+    void addToRoom(List<ImagesResponse> products);
+
+
+    @Query("SELECT * FROM MyProduct")
+    public List<ImagesResponse> getAllItems();
+
     @Query("SELECT * FROM MyCart")
     public List<CartForRoom> getCartItems();
 
     @Query("SELECT * FROM mycart WHERE id=:id LIMIT 1")
     CartForRoom getData(int id);
 
-    @Query("select COUNT (*) from MyCart")
+    @Query("select SUM (count) from MyCart")
     int countCart();
 //
-    @Query("DELETE FROM MyCart")
+    @Query("DELETE FROM MyProduct")
     void emptyCart();
+
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.dukanactivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         });
+
+        updateCount();
     }
 
         private void replaceFragment(Fragment fragment) {
@@ -64,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
         //badge for displaying cart item number
             BadgeDrawable badgeDrawable = binding.bottomNavView.getOrCreateBadge(R.id.cart_icon);
             badgeDrawable.setNumber(CartDatabase.getInstance(this).cartDao().countCart());
+            if(badgeDrawable.getNumber()==0){
+
+                badgeDrawable.setVisible(false);
+
+//                Toast.makeText(this, "Badge drawable zero", Toast.LENGTH_SHORT).show();
+            }
+            else  {
+                badgeDrawable.setVisible(true);
+            }
 
 
 

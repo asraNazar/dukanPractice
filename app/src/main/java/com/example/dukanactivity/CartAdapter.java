@@ -27,13 +27,24 @@ import java.util.List;
 class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.ViewHolder> {
     private List<CartForRoom> carts;
     private Context context;
-    private CartDao cartDao;
-    SharedPreferences sr;
+//    private CartDao cartDao;
+//    SharedPreferences sr;
 
-    public CartProductAdapter(List<CartForRoom> carts, Context context) {
+    public CartProductAdapter(List<CartForRoom> carts, Context context, OnOptionSelectedListener cartInterface) {
         this.carts = carts;
         this.context = context;
+        this.onOptionSelectedListener = cartInterface;
     }
+
+    OnOptionSelectedListener onOptionSelectedListener;
+
+    public void setSelectedPosition(int selectedPosition) {
+        this.selectedPosition = selectedPosition;
+        notifyDataSetChanged();
+    }
+
+    private int selectedPosition = 0;
+
 
     @NonNull
     @Override
@@ -50,30 +61,31 @@ class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.ViewHol
         final CartForRoom cart = carts.get(position);
 
 
-
-
-
         Glide.with(context).load(carts.get(position).imageid).into(holder.img_article_cart);
         //Glide.with(context).load(carts.get(position)).into(holder.img_article_cart);
         holder.txt_price_cart.setText("Rs. " + cart.getPrice());
-        holder.quantity.setText("Quantity: " + getItemCount());
+        holder.quantity.setText("Quantity: " + cart.getCount()+"");
+
+
         holder.btn_remove_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                CartDatabase.getInstance(context).cartDao().deleteCartItems(cart);
-                CartDatabase.getInstance(context).cartDao().updateCart(cart);
+//                CartDatabase.getInstance(context).cartDao().deleteCartItems(cart);
+//                CartDatabase.getInstance(context).cartDao().updateCart(cart);
 
                 // updateRec_Cart(carts);
-                notifyItemRemoved(position);
-                holder.quantity.setText("Quantity: " + getItemCount());
+//                notifyItemRemoved(position);
+//                holder.quantity.setText("Quantity: " + getItemCount());
                 //CartProductAdapter.this.notify();
-               // notifyDataSetChanged();
+//                CartProductAdapter.this.notifyDataSetChanged();
+//                notifyDataSetChanged();
 
+                //interface
+                if (onOptionSelectedListener != null) {
+                    onOptionSelectedListener.onOptionSelected(position);
+                }
 
-
-
-//
                 MainActivity mainActivity = (MainActivity) context;
                 mainActivity.updateCount();
 
@@ -90,25 +102,6 @@ class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.ViewHol
 
     }
 
-    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position,
-                                 List<Object> payloads) {
-
-        final CartForRoom cart = carts.get(position);
-        if (payloads.isEmpty()) {
-            super.onBindViewHolder(holder, position, payloads);
-
-        }
-        else {
-            Bundle bundle = (Bundle) payloads.get(0);
-            for (String key : bundle.keySet()) {
-                if (key.equals("image") && key.equals("price")) {
-                    Glide.with(context).load(carts.get(position)).into(holder.img_article_cart);
-                    holder.txt_price_cart.setText("Rs. " + cart.getPrice());
-                }
-
-            }
-        }
-    }
 
     @Override
     public int getItemCount() {
@@ -131,13 +124,9 @@ class CartProductAdapter extends RecyclerView.Adapter<CartProductAdapter.ViewHol
         }
     }
 
-    public void updateRec_Cart(List<CartForRoom> cartsRec) {
 
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtilsClass(carts, cartsRec));
-        diffResult.dispatchUpdatesTo(this);
-
-        carts.clear();
-        carts.addAll(cartsRec);
+    interface OnOptionSelectedListener {
+        void onOptionSelected(int position);
     }
 
 }

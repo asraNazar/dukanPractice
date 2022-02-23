@@ -1,12 +1,16 @@
 package com.example.dukanactivity;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-
+@Entity(tableName = "MyProduct")
 public class ImagesResponse implements Serializable {
 
-
+    @PrimaryKey(autoGenerate = true)
+    public int itemId;
 
     @SerializedName("id")
     public int id;
