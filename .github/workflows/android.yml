@@ -36,6 +36,6 @@ jobs:
       with:
           appId: ${{ secrets.FIREBASE_ID }}
           token: ${{ secrets.ASD }}
-          groups: Android-CICD-Testers
+          groups: android-cicd-testers
           releaseNotes: "Hey! This my first integrate Firebase distributions with Github Actions"
           file: app/build/outputs/apk/debug/app-debug.apk 
