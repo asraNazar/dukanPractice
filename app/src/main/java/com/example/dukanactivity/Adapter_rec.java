@@ -57,8 +57,6 @@ public class Adapter_rec extends RecyclerView.Adapter<Adapter_rec.myViewHolder> 
 
         holder.txt_description.setText(md.getTitle());
 
-//        holder.img_article.setImageResource(md.getUrl());
-
         Glide.with(context).load(mList.get(position).getUrl()).into(holder.img_article);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

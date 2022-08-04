@@ -17,8 +17,6 @@
         android:id="@+id/img_1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_270sdp"
-        android:background="@drawable/ic_baseline_shopping_basket_24"
-
         android:layout_gravity="top"
 
         />

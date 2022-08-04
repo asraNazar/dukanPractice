@@ -43,19 +43,14 @@ public class CartFragment extends Fragment {
 
 
     CartProductAdapter cartProductAdapter;
-    List<CartForRoom>carts;
+    List<CartForRoom> carts;
+
 
 
     private ImageView img;
 
     private Button addToCart;
-    private TextView  price;
-
-
-
-    public CartFragment() {
-        // Required empty public constructor
-    }
+    private TextView price;
 
 
     public static CartFragment newInstance() {
@@ -65,13 +60,6 @@ public class CartFragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,60 +72,55 @@ public class CartFragment extends Fragment {
 
         return view;
     }
-//    BroadcastReceiver mMassage = new BroadcastReceiver() {
-//
-//
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            String cartcount = intent.getStringExtra("cartcount");
-//            if (carts.size() == 0) {
-//                txt_quantity.setText("Your Cart is Empty");
-//            } else {
-//                txt_quantity.setText(String.valueOf(carts.size()));
-//            }
-//        }
-//
-//
-//    };
 
-//    private void updatecartcount() {
-//        int count = cartProductAdapter.getItemCount();
-//
-//        if (count == 0) {
-//            txt_quantity.setText("Your Cart is Empty");
-//        } else {
-//            txt_quantity.setText(String.valueOf(count));
-//        }
-
-
-   // }
 
     private void getCartData() {
-        carts = CartDatabase.getInstance(getActivity()).cartDao().getCartItems();
-        cartProductAdapter = new CartProductAdapter(carts, getActivity());
 
-//        cartProductAdapter.updateRec_Cart(carts);
+        //cartProductAdapter.
+        carts = CartDatabase.getInstance(getActivity()).cartDao().getCartItems();
+
+        cartProductAdapter = new CartProductAdapter(carts, getActivity(), new CartProductAdapter.OnOptionSelectedListener() {
+            @Override
+            public void onOptionSelected(int position) {
+                navigate(position);
+
+            }
+        });
+
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setAdapter(cartProductAdapter);
 
-        if(carts.isEmpty()){
-           BlankFragment fr = new BlankFragment();
+
+        if (carts.isEmpty()) {
+            BlankFragment fr = new BlankFragment();
 
             getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container,fr)
+                    .replace(R.id.fragment_container, fr)
                     .commit();
 
         }
 
 
-
-
-
-
-
-
     }
 
+    private void navigate(int position) {
+        cartProductAdapter.setSelectedPosition(position);
+        CartForRoom cartForRoom = carts.get(position);
+
+        CartDatabase.getInstance(getActivity()).cartDao().deleteCartItems(cartForRoom);
+
+        carts.remove(position);
+
+        if (carts.isEmpty()) {
+            BlankFragment fr = new BlankFragment();
+
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fr)
+                    .commit();
+
+        }
+//
+    }
 
 
 }
