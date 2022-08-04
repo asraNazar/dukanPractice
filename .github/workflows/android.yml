@@ -24,8 +24,26 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+<<<<<<< HEAD
     - name: Upload APK
       uses: actions/upload-artifact@v3.1.0
       with:
         name: app
         path: app/build/outputs/apk/debug/app-debug.apk
+=======
+      
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+          name: app
+          path: app/build/outputs/apk/debug/app-debug.apk
+          
+    - name: Upload Artifact To Firebase App Distribution
+      uses: wzieba/Firebase-Distribution-Github-Action@v1.3.4
+      with:
+          appId: ${{ secrets.FIREBASE_ID }}
+          token: ${{ secrets.ASD }}
+          groups: Android-CICD-Testers
+          releaseNotes: "Hey! This my first integrate Firebase distributions with Github Actions"
+          file: app/build/outputs/apk/debug/app-debug.apk 
+>>>>>>> 620d1cce79a774df10cc4049dc62dbd141371ea8
